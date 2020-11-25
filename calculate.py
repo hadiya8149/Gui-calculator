@@ -64,14 +64,10 @@ def eval_nums(self):
         ind = txt.find(op)
         oprnd1 = txt[:ind]
         oprnd2 = txt[ind+1:]
-        print('this is ind', ind)
-        print('this is oprnd1', oprnd1)
-        print('this is oprnd2', oprnd2)
         try:
             result = calculations(oprnd1, oprnd2, op)
             
         except ValueError:
             oprnd1 = history[0]
-            print(oprnd1)
             result = calculations(oprnd1, oprnd2, op)
         self.label.setText(str(result))
