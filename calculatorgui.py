@@ -8,7 +8,7 @@ class App(QMainWindow):
     cal = 0
     def __init__(self):
         super().__init__()
-        self.title = 'PyQt5 tabs - pythonspot.com'
+        self.title = 'Calculator'
         self.left = 0
         self.top = 0
         self.width = 300
@@ -34,8 +34,8 @@ class MyTableWidget(QWidget):
         
         
         # Add tabs
-        self.tabs.addTab(self.tab1,"Tab 1")
-        self.tabs.addTab(self.tab2,"Tab 2")
+        self.tabs.addTab(self.tab1,"Basic")
+        self.tabs.addTab(self.tab2,"Advanced")
         
         # Add label to tab
         self.tab1.layout = QVBoxLayout(self)
@@ -50,6 +50,8 @@ class MyTableWidget(QWidget):
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
+        
+        
     def createGridLayout(self):
         from calculate import get_inp, get_op, eval_nums
         def run_get_inp():
