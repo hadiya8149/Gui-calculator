@@ -48,7 +48,7 @@ class MyTableWidget(QWidget):
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
     def createGridLayout(self):
-        from calclip import get_inp, get_op, eval_nums, reset, show_history
+        from calculate import get_inp, get_op, eval_nums, reset, show_history
         def run_get_inp():
             get_inp(self)
         
@@ -97,6 +97,7 @@ class MyTableWidget(QWidget):
         btn_dot.clicked.connect(run_get_inp)
         btn_eql.clicked.connect(run_eval_nums)
         btn_clr.clicked.connect(run_reset)
+        btn_sqrt.clicked.connect(run_get_inp)
         btn_pow.clicked.connect(run_get_op)
         btn_re.clicked.connect(run_history)
         layout.addWidget(btn_div, 1, 3)

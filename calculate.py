@@ -1,5 +1,5 @@
-from clip import App
-from clip import MyTableWidget 
+from calculatorgui import App, MyTableWidget
+from math import sqrt
 ls = []         
 last_oprnd = []
 history = []
@@ -7,6 +7,10 @@ history = []
 
 def calculations(oprnd1, oprnd2, op):  
     global ans
+    if '√' in oprnd1:
+        oprnd1 = sqrt(float(oprnd1[1:]))
+    if '√' in oprnd2:
+        oprnd2 = sqrt(float(oprnd2[1:]))
     if op == '+':
         ans = float(oprnd1)+float(oprnd2)    
     elif op == '-':
@@ -38,7 +42,7 @@ def reset(self): # function to reset the previous operands and operator
     self.label.clear()
     App.inp_state = True
 
-
+# you can create a toggling function for calculator
 def get_inp(self):
     button = self.sender()
     if App.inp_state == True:
@@ -59,20 +63,18 @@ def get_op(self):
     
 
 def eval_nums(self):
+    try:
         txt = self.label.text()
         op = ls[0]
         ind = txt.find(op)
         oprnd1 = txt[:ind]
         oprnd2 = txt[ind+1:]
-
-        try:
-            result = calculations(oprnd1, oprnd2, op)
-        except ValueError:
-            oprnd1 = last_oprnd[0]
-            result = calculations(oprnd1, oprnd2, op)
-        
-        reset(self)
-        self.label.setText(str(result))
+        result = calculations(oprnd1, oprnd2, op)
+    except ValueError:
+        oprnd1 = last_oprnd[0]
+        result = calculations(oprnd1, oprnd2, op)
+    reset(self)
+    self.label.setText(str(result))
 
 
 def show_history(self):
