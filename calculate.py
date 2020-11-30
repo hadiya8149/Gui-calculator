@@ -63,8 +63,8 @@ def get_op(self):
     
 
 def eval_nums(self):
-    try:
-        txt = self.label.text()
+    txt = self.label.text()
+    try:        
         op = ls[0]
         ind = txt.find(op)
         oprnd1 = txt[:ind]
@@ -73,6 +73,10 @@ def eval_nums(self):
     except ValueError:
         oprnd1 = last_oprnd[0]
         result = calculations(oprnd1, oprnd2, op)
+    except IndexError:
+        oprnd1 = txt
+        if '√' in oprnd1:
+            result = str(sqrt(float(oprnd1[1:])))
     reset(self)
     self.label.setText(str(result))
 

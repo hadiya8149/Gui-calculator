@@ -62,7 +62,7 @@ class MyTableWidget(QWidget):
             eval_nums(self)
 
         def run_reset():
-            reset(self)
+            reset(self) 
 
         self.horizontalGroupBox = QGroupBox()
         layout = QGridLayout()
@@ -76,7 +76,7 @@ class MyTableWidget(QWidget):
             button.clicked.connect(run_get_inp)
 
         btn_div = QPushButton('/')
-        btn_mul = QPushButton('*')
+        btn_mul = QPushButton('*')  ; 
         btn_sub = QPushButton('-')
         btn_dot = QPushButton('.')
         btn_mod = QPushButton('%')
