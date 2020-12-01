@@ -7,9 +7,9 @@ history = []
 
 def calculations(oprnd1, oprnd2, op):  
     global ans
-    if '√' in oprnd1:
+    if '√' in str(oprnd1):
         oprnd1 = sqrt(float(oprnd1[1:]))
-    if '√' in oprnd2:
+    if '√' in str(oprnd2):
         oprnd2 = sqrt(float(oprnd2[1:]))
     if op == '+':
         ans = float(oprnd1)+float(oprnd2)    
@@ -25,8 +25,7 @@ def calculations(oprnd1, oprnd2, op):
         ans = float(oprnd1) % float(oprnd2)
     else:
         pass
-    history.append(str(oprnd1)+str(op)+str(oprnd2))
-    last_oprnd.insert(0, ans)
+    
 
     if ans.is_integer():
         ans = int(ans)
@@ -42,7 +41,7 @@ def reset(self): # function to reset the previous operands and operator
     self.label.clear()
     App.inp_state = True
 
-# you can create a toggling function for calculator
+
 def get_inp(self):
     button = self.sender()
     if App.inp_state == True:
@@ -64,11 +63,13 @@ def get_op(self):
 
 def eval_nums(self):
     txt = self.label.text()
+    
     try:        
         op = ls[0]
         ind = txt.find(op)
         oprnd1 = txt[:ind]
         oprnd2 = txt[ind+1:]
+        history.append(str(oprnd1)+str(op)+str(oprnd2))
         result = calculations(oprnd1, oprnd2, op)
     except ValueError:
         oprnd1 = last_oprnd[0]
@@ -77,6 +78,7 @@ def eval_nums(self):
         oprnd1 = txt
         if '√' in oprnd1:
             result = str(sqrt(float(oprnd1[1:])))
+    last_oprnd.insert(0, result)
     reset(self)
     self.label.setText(str(result))
 
